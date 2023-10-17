@@ -6,6 +6,7 @@
   "scripts": {
     "cypress:debug": "cypress open --e2e --browser chrome",
     "cypress:run": "cypress run --spec --browser chrome cypress/e2e/features/*",
+    "cypress:execution-for-pipeline": "cypress run && node --reporter junit",
     "cypress:report": "cypress run --browser chrome --spec cypress/e2e/features/* && node cucumber-html-report.js"
   },
   "keywords": [

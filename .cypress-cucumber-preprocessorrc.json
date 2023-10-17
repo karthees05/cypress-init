@@ -1,15 +1,15 @@
 {
   "json": {
-    "enabled": true,
+    "enabled": false,
     "output": "jsonlogs/log.json",
     "formatter": "cucumber-json-formatter.exe"
   },
   "message": {
-    "enabled": true,
+    "enabled": false,
     "output": "jsonlogs/message.ndjson"
   },
   "html": {
-    "enabled": false
+    "enabled": true
   },
   "cypress-cucumber-preprocessor": {
     "filterSpecs": true,

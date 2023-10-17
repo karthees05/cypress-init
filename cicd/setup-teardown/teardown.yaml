@@ -1,0 +1,17 @@
+parameters:
+  - name: qaDirectory
+    type: string
+
+steps:
+  - task: PublishPipelineArtifact@1
+    condition: always()
+    inputs:
+      targetPath: '${{ parameters.qaDirectory }}/cucumber-report.html'
+      artifact: 'cucumber report attempt $(System.JobAttempt)'
+      publishLocation: 'pipeline'
+
+  - task: PublishTestResults@2
+    condition: always()
+    inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: '**/xml-result-*.xml'

@@ -1,0 +1,31 @@
+schedules:
+  - cron: "0 0 * * *"
+    displayName: Daily midnight build
+    branches:
+      include:
+        - develop
+
+parameters:
+  - name: runCommandOptionsParameter
+    displayName: Cypress parameter (Parameters you would put before --env. e.g., specs to execute)
+    type: string
+    default: " "
+
+  - name: runCommandEnvParameter
+    displayName: Environment parameter (Parameters you would put after --env, should start with comma)
+    type: string
+    # Default parameter with whitespace as a parameter is required by Azure DevOps
+    default: "VALID_VIN='test'  ENV='dev'"
+
+  - name: baseUrl
+    displayName: BaseUrl of target app (This is a Dev pipeline, so this should always point to the Dev stage)
+    type: string
+    default: "https://url"
+
+steps:
+  - template: ./core-runner.yaml
+    parameters:
+      runCommand: 'cypress:execution-for-pipeline'
+      runCommandOptionsParameter: ${{ parameters.runCommandOptionsParameter }}
+      runCommandEnvParameter: ${{ parameters.runCommandEnvParameter }}
+      baseUrl: ${{ parameters.baseUrl }}

@@ -21,14 +21,24 @@ async function setupNodeEvents(on, config) {
 }
 
 module.exports = defineConfig({
+  reporterOptions: {
+    mochaFile: 'xml-report/xml-result-[hash].xml',
+    toConsole: false,
+  },
   e2e: {
     setupNodeEvents,
     supportFile: false,
     specPattern: "cypress/e2e/features/*.feature",
     baseUrl: "https://www.saucedemo.com",
     chromeWebSecurity: false,
+    video: false,
+    screenshotOnRunFailure: true,
+    retries: {
+      "runMode": 1,
+      "openMode": 0
+    },
     env: {
-      allureReuseAfterSpec: true,
+      // allureReuseAfterSpec: true,
     },
   },
 });

@@ -50,3 +50,9 @@ Thumbs.db
 
 # Cucumber Report
 reports
+cypress/screenshots/*
+jsonlogs/*
+reports
+/xml-report/
+*.html
+jsonlogs/

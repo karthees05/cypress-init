@@ -1,0 +1,28 @@
+parameters:
+  - name: runCommand
+    type: string
+  - name: runCommandOptionsParameter
+    displayName: Cypress parameter (Parameters you would put before --env. e.g., specs to execute)
+    type: string
+  - name: runCommandEnvParameter
+    displayName: Environment parameter (Parameters you would put after --env)
+    type: string
+  - name: baseUrl
+    displayName: BaseUrl (e.g. url)
+    type: string
+
+steps:
+  - template: ./setup-teardown/setup.yaml
+    parameters:
+      qaDirectory: '$(Build.SourcesDirectory)'
+
+  # Run tests
+  - script: |
+      set -ev
+      CYPRESS_BASE_URL=${{ parameters.baseUrl }} npm run ${{ parameters.runCommand }} -- ${{ parameters.runCommandOptionsParameter }} --env ${{ parameters.runCommandEnvParameter }}
+    displayName: 'Run tests with simple report'
+
+  - template: ./setup-teardown/teardown.yaml
+    parameters:
+      qaDirectory: '$(Build.SourcesDirectory)'
+

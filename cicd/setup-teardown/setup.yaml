@@ -1,0 +1,17 @@
+parameters:
+  - name: qaDirectory
+    type: string
+
+steps:
+  # Install Node.js
+  - task: NodeTool@0
+    displayName: 'Install Node.js'
+    inputs:
+      versionSpec: '18.x'
+
+  # Install NPM dependencies
+  - task: Npm@1
+    displayName: 'Install NPM dependencies'
+    inputs:
+      command: 'ci'
+      workingDir: '${{ parameters.qaDirectory }}'
