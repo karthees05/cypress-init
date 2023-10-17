@@ -11,6 +11,6 @@ report.generate({
     platform: {
       name: "Windows",
       version: "11",
-    },
+    }, 
   },
 });
